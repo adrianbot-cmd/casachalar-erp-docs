@@ -2,7 +2,7 @@ site_name: ERP Casa Chalar - Documentación
 site_description: Manuales de usuario y documentación del sistema ERP Casa Chalar
 site_url: https://adrianbot-cmd.github.io/casachalar-erp-docs/
 repo_url: https://github.com/adrianbot-cmd/casachalar-erp-docs
-repo_name: casachalar-erp-docs-docs
+repo_name: casachalar-erp-docs
 edit_uri: ""
 
 theme:
@@ -24,6 +24,13 @@ nav:
   - Briefing del Proyecto: BRIEFING-CARLOS.md
   - Manuales de Usuario:
     - Primeros pasos: manuales/primeros-pasos.md
+  - Módulos:
+    - Artículos: modulos/articulos.md
+    - Clientes: modulos/clientes.md
+    - Proveedores: modulos/proveedores.md
+    - Stock: modulos/stock.md
+    - Usuarios: modulos/usuarios.md
+    - Tipo de Cambio: modulos/tipo-cambio.md
   - Documentación Técnica:
     - Arquitectura: arquitectura/overview.md
     - Guía de Deploy: deploy/guia-deploy.md
@@ -31,6 +38,7 @@ nav:
       - ADR-001 Stack: decisiones/ADR-001-stack.md
       - ADR-002 Arquitectura de Negocio: decisiones/ADR-002-arquitectura-negocio.md
       - ADR-003 Maestros del Sistema: decisiones/ADR-003-maestros-del-sistema.md
+      - ADR-004 Capa 3 - Usuarios y Stock: decisiones/ADR-004-capa3-usuarios-stock.md
 
 plugins:
   - search:

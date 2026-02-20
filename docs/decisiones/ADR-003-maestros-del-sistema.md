@@ -1,89 +1,56 @@
-# ADR-003 — Maestros del Sistema: Artículos, Clientes, Proveedores y Precios
+# ADR-003 — Maestros del Sistema: Artículos, Clientes, Proveedores
 
 **Fecha:** 2026-02-20  
-**Estado:** En definición  
-**Participantes:** Julio Giraudi, Adri (agente)  
-**Pendiente:** Revisión y aprobación de Carlos Bendayan
+**Estado:** ✅ Implementado  
+**Participantes:** Julio Giraudi, Adri (agente)
 
 ---
 
 ## Contexto
 
-Con la Capa 1 (fundación: empresas, sucursales, usuarios, tipo de cambio) en producción, el siguiente paso es construir los **maestros del sistema**: las tablas de referencia que todos los módulos operativos (Ventas, Compras, Inventarios) utilizan como base.
+Con la Capa 1 (fundación: empresas, sucursales, usuarios, tipo de cambio) operativa, se construyeron los **maestros del sistema**: las tablas de referencia que todos los módulos operativos utilizan como base.
 
 ---
 
-## Maestros definidos
+## Decisiones implementadas
 
-### ✅ Ya implementados (Capa 1)
+### Artículos (`articulos`)
 
-| Entidad | Tabla | Estado |
-|---------|-------|--------|
-| Empresas | `empresas` | ✅ En producción |
-| Sucursales | `sucursales` | ✅ En producción |
-| Artículos | `articulos` | ✅ Tabla creada, CRUD pendiente |
-| Tipo de cambio | `tipo_cambio` | ✅ Automático via BCU |
+- Código interno único por empresa
+- Código de barras Code 128 (campo `codigoBarra`, opcional)
+- Descripción larga (300 chars) + descripción corta (100 chars)
+- Unidad de medida libre: `UN`, `KG`, `MT`, etc. (default `UN`)
+- Soft delete (baja lógica, `activo = false`)
+- El artículo existe a nivel empresa; el **stock** existe a nivel sucursal
 
-### 🔲 A construir (Capa 2 — Maestros)
+### Proveedores (`proveedores`)
 
-| Entidad | Tabla | Depende de | Estado |
-|---------|-------|------------|--------|
-| CRUD Artículos | `articulos` | — | ⚙️ En desarrollo |
-| Depósitos | `depositos` | Carlos Bendayan (define tipos) | ⏳ Pendiente definición |
-| Clientes | `clientes` | Carlos Bendayan | ⏳ Pendiente definición |
-| Proveedores | `proveedores` | Carlos Bendayan | ⏳ Pendiente definición |
-| Listas de precios | `listas_precios`, `precios_articulos` | Carlos Bendayan | ⏳ Pendiente definición |
-| Stock por sucursal | `stock` | Depósitos + Artículos | ⏳ Pendiente |
+- Razón social, RUT, teléfono, email, dirección
+- Soft delete (`activo = false`)
+- Aislados por empresa
 
----
+### Clientes (`clientes`)
 
-## Decisiones sobre Artículos (ya definidas en ADR-002)
-
-- Código interno por empresa (único por empresa)
-- Código de barras Code 128
-- Unidad de medida libre (UN, KG, MT, etc.)
-- El artículo existe a nivel empresa; el **stock** existe a nivel sucursal/depósito
-
-## Decisiones sobre Depósitos (pendiente Carlos)
-
-Tipos conocidos (ADR-002):
-- `PROPIO` — depósito propio de la empresa
-- `ZF` — depósito en Zona Franca
-- `CONSIGNACION` — mercadería en consignación
-
-Preguntas abiertas:
-- ¿Los depósitos son hijos de la sucursal o de la empresa?
-- ¿Una sucursal puede tener múltiples depósitos?
-- ¿El stock de ZF tiene tratamiento especial en el costo?
-
-## Decisiones sobre Clientes (pendiente Carlos)
-
-Preguntas abiertas:
-- ¿Clientes y proveedores son la misma entidad (con un flag) o tablas separadas?
-- ¿Se maneja cuenta corriente desde el inicio o solo para módulos posteriores?
-- ¿Campos obligatorios? (RUT, razón social, dirección, etc.)
-- ¿Clientes pueden ser de otras empresas (intercompany)?
-
-## Decisiones sobre Listas de Precios (pendiente Carlos)
-
-Preguntas abiertas:
-- ¿Cuántas listas de precios hay actualmente?
-- ¿El precio es en USD o UYU?
-- ¿Descuentos por cliente o por lista?
-- ¿Vigencia de precios (fecha desde/hasta)?
+- Razón social, RUT, teléfono, email, dirección
+- Soft delete (`activo = false`)
+- Aislados por empresa
 
 ---
 
-## Plan de desarrollo (propuesto)
+## Estado actual
 
-### Sprint 1 (sin Carlos)
-1. CRUD completo de Artículos (frontend + backend + API)
+| Entidad | Backend | Frontend | Observaciones |
+|---------|---------|----------|---------------|
+| Artículos | ✅ CRUD | ✅ CRUD | V5 migration |
+| Proveedores | ✅ CRUD | ✅ CRUD | V7 migration |
+| Clientes | ✅ CRUD | ✅ CRUD | V8 migration |
 
-### Sprint 2 (con Carlos)
-2. Depósitos + Stock inicial
-3. Clientes y Proveedores
-4. Listas de Precios
+---
 
-### Sprint 3
-5. Módulo de Inventarios (movimientos de stock)
-6. Módulo de Ventas (básico)
+## Pendiente (próximas capas)
+
+| Entidad | Estado | Referencia |
+|---------|--------|------------|
+| Depósitos (PROPIO, ZF, CONSIGNACION) | ⏳ Pendiente definición con Carlos | ADR futuro |
+| Listas de precios | ⏳ Pendiente definición con Carlos | ADR futuro |
+| Precios por artículo | ⏳ Pendiente | Depende de Listas de precios |
