@@ -2,7 +2,7 @@ site_name: ERP Casa Chalar - Documentación
 site_description: Manuales de usuario y documentación del sistema ERP Casa Chalar
 site_url: https://adrianbot-cmd.github.io/casachalar-erp-docs/
 repo_url: https://github.com/adrianbot-cmd/casachalar-erp-docs
-repo_name: casachalar-erp-docs
+repo_name: casachalar-erp-docs-docs
 edit_uri: ""
 
 theme:
