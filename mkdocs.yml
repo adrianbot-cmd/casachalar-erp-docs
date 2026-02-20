@@ -30,6 +30,7 @@ nav:
     - Decisiones (ADRs):
       - ADR-001 Stack: decisiones/ADR-001-stack.md
       - ADR-002 Arquitectura de Negocio: decisiones/ADR-002-arquitectura-negocio.md
+      - ADR-003 Maestros del Sistema: decisiones/ADR-003-maestros-del-sistema.md
 
 plugins:
   - search:
