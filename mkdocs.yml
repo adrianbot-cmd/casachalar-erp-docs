@@ -29,6 +29,7 @@ nav:
     - Guía de Deploy: deploy/guia-deploy.md
     - Decisiones (ADRs):
       - ADR-001 Stack: decisiones/ADR-001-stack.md
+      - ADR-002 Arquitectura de Negocio: decisiones/ADR-002-arquitectura-negocio.md
 
 plugins:
   - search:
