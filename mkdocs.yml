@@ -21,6 +21,7 @@ theme:
 
 nav:
   - Inicio: index.md
+  - Briefing del Proyecto: BRIEFING-CARLOS.md
   - Manuales de Usuario:
     - Primeros pasos: manuales/primeros-pasos.md
   - Documentación Técnica:
