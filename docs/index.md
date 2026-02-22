@@ -7,46 +7,63 @@ Bienvenido al sistema ERP de **Casa Chalar** — repuestos e insumos para climat
 El ERP de Casa Chalar es la plataforma central para gestionar las operaciones del negocio:
 
 - 📦 **Stock e inventario** de repuestos y productos
-- 🛒 **Ventas** y atención a clientes
-- 🚚 **Compras** e importaciones
-- 💰 **Facturación** y finanzas
+- 🛒 **Ventas** — cotizaciones, pedidos y facturación
+- 💰 **Cobros** — recibos de cobro multi-factura
 - 👥 **Clientes y proveedores**
+- 💱 **Tipo de cambio** BCU (USD/UYU automático)
 - 📊 **Reportes** y análisis
 
 ## Acceso al sistema
 
 | Ambiente | URL | Uso |
 |----------|-----|-----|
-| Producción | http://35.198.12.188 | Operación diaria |
+| Producción | https://one-erp.casachalar.com | Operación diaria |
 | Desarrollo | http://34.151.246.79 | Pruebas y validación |
 
 ## Estado de desarrollo
 
-### ✅ Módulos implementados (en develop)
+### ✅ Módulos implementados
 
 | Módulo | Backend | Frontend | Estado |
 |--------|---------|----------|--------|
 | Autenticación JWT | ✅ | ✅ Login | ✅ Completo |
 | Empresas | ✅ | — | ✅ Completo |
 | Sucursales | ✅ | — | ✅ Completo |
-| Tipo de cambio (BCU) | ✅ | — | ✅ Completo |
+| Tipo de cambio (BCU) | ✅ auto + manual | ✅ | ✅ Completo |
 | Artículos | ✅ CRUD | ✅ CRUD | ✅ Completo |
+| Categorías de artículo | ✅ CRUD | ✅ CRUD | ✅ Completo |
+| Marcas | ✅ CRUD | ✅ CRUD | ✅ Completo |
+| Listas de precio | ✅ CRUD | ✅ CRUD + drawer precios | ✅ Completo |
 | Proveedores | ✅ CRUD | ✅ CRUD | ✅ Completo |
-| Clientes | ✅ CRUD | ✅ CRUD | ✅ Completo |
+| Clientes | ✅ CRUD + descuentos | ✅ CRUD inline | ✅ Completo |
 | Usuarios | ✅ CRUD | ✅ CRUD | ✅ Completo |
 | Stock por sucursal | ✅ + movimientos | ✅ Vista | ✅ Completo |
-| Roles | ✅ | — | ✅ Completo |
-| Dashboard | — | ✅ | ✅ Completo |
+| Vendedores | ✅ (migrados del legacy) | — | ✅ Completo |
+| **Cotizaciones** | ✅ CRUD + estados | ✅ Formulario inline | ✅ Completo |
+| **Pedidos de Venta** | ✅ CRUD + estados | ✅ Desde cotización | ✅ Completo |
+| **Facturas** | ✅ CRUD + tipos | ✅ Desde pedido | ✅ Completo |
+| **Recibos de Cobro** | ✅ Multi-factura | ✅ Flujo guiado | ✅ Completo |
 
 ### ⏳ Próximos módulos
 
 | Módulo | Estado |
 |--------|--------|
-| Compras (órdenes locales e importación) | Pendiente definición con Carlos |
-| Ventas (presupuestos y facturas) | Pendiente definición con Carlos |
-| Tesorería (caja, cuentas) | Pendiente definición con Carlos |
-| Depósitos (PROPIO, ZF, CONSIGNACIÓN) | Pendiente definición con Carlos |
-| Listas de precios | Pendiente definición con Carlos |
+| Compras locales (órdenes a proveedores) | Pendiente |
+| Importaciones (Carpeta de Importación, costos NCM/CBM) | Pendiente |
+| Tesorería (caja, cuentas corrientes) | Pendiente |
+| Depósitos (PROPIO, ZF, CONSIGNACIÓN) | Pendiente definición |
+| Intercompany (transferencias entre empresas) | Pendiente |
+
+## Flujo de ventas
+
+```
+Cliente  →  Cotización  →  Pedido  →  Factura  →  Recibo de Cobro
+                ↕              ↕
+          (BORRADOR→       (BORRADOR→
+           ENVIADA→         CONFIRMADO→
+           ACEPTADA→        EN_PROCESO→
+           CONVERTIDA)      FACTURADO)
+```
 
 ## Contacto y soporte
 

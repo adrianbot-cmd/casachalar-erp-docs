@@ -10,7 +10,7 @@ theme:
   language: es
   palette:
     - scheme: default
-      primary: blue
+      primary: indigo
       accent: blue
   features:
     - navigation.tabs
@@ -24,13 +24,20 @@ nav:
   - Briefing del Proyecto: BRIEFING-CARLOS.md
   - Manuales de Usuario:
     - Primeros pasos: manuales/primeros-pasos.md
+    - Módulo Ventas: manuales/ventas.md
   - Módulos:
     - Artículos: modulos/articulos.md
     - Clientes: modulos/clientes.md
     - Proveedores: modulos/proveedores.md
     - Stock: modulos/stock.md
+    - Listas de Precio: modulos/listas-precio.md
     - Usuarios: modulos/usuarios.md
     - Tipo de Cambio: modulos/tipo-cambio.md
+    - Ventas:
+      - Cotizaciones: modulos/cotizaciones.md
+      - Pedidos: modulos/pedidos.md
+      - Facturas: modulos/facturas.md
+      - Recibos de Cobro: modulos/recibos-cobro.md
   - Documentación Técnica:
     - Arquitectura: arquitectura/overview.md
     - Guía de Deploy: deploy/guia-deploy.md
@@ -39,6 +46,7 @@ nav:
       - ADR-002 Arquitectura de Negocio: decisiones/ADR-002-arquitectura-negocio.md
       - ADR-003 Maestros del Sistema: decisiones/ADR-003-maestros-del-sistema.md
       - ADR-004 Capa 3 - Usuarios y Stock: decisiones/ADR-004-capa3-usuarios-stock.md
+      - ADR-005 Módulo Ventas: decisiones/ADR-005-ventas-comprobantes.md
 
 plugins:
   - search:
