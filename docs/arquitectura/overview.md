@@ -10,7 +10,7 @@
 | Build tool FE | Vite | 6 |
 | Base de datos | PostgreSQL | 16 (Cloud SQL) |
 | ORM | JPA / Hibernate | — |
-| Migraciones | Flyway | V1–V9 |
+| Migraciones | Flyway | V1–V21 |
 | Contenedores | Docker + Compose | — |
 | Registry | GCP Artifact Registry | — |
 | Hosting | GCP Compute Engine (e2-micro) | southamerica-east1-c |
@@ -58,7 +58,7 @@ casachalar-erp/
 │       ├── security/     # JWT + Spring Security
 │       └── config/       # OpenAPI, configuración
 │   └── src/main/resources/
-│       └── db/migration/ # Flyway migrations V1–V9
+│       └── db/migration/ # Flyway migrations V1–V21
 ├── frontend/
 │   └── src/
 │       ├── pages/        # Pantallas principales
@@ -84,24 +84,44 @@ casachalar-erp/
 | V7 | Creación de `proveedores` |
 | V8 | Creación de `clientes` |
 | V9 | Creación de `stock_articulo` y `movimientos_stock` |
+| V10 | Creación de `categorias_articulo` y `marcas` |
+| V11 | Extensión de `articulos` (categoria, marca, iva_tasa, peso, proveedor_habitual) |
+| V12 | Creación de `listas_precio` y `articulo_lista_precio` |
+| V13 | Extensión de `clientes` (condicion_pago, limite_credito, lista_precio, ubicacion, contacto) |
+| V14 | Creación de `vendedores` |
+| V15 | Creación de `cotizaciones` y `cotizacion_items` |
+| V16 | Creación de `pedidos` y `pedido_items` |
+| V17 | Creación de `facturas` y `factura_items` |
+| V18 | Creación de `recibos_cobro`, `recibo_facturas` y `recibo_medios_pago` |
+| V19 | Datos de vendedores iniciales |
+| V20 | Migración de vendedores desde sistema legacy |
+| V21 | Extensión de `clientes` con `descuento1_pct` y `descuento2_pct` |
 
 ## API REST — Endpoints disponibles
 
 Todos los endpoints requieren autenticación JWT (Bearer token).  
 Header opcional para SUPER_ADMIN: `X-Empresa-Id: {id}`
 
-| Módulo | Base URL | Operaciones |
-|--------|----------|-------------|
-| Auth | `POST /api/v1/auth/login` | Login → token JWT |
-| Artículos | `/api/v1/articulos` | GET, GET/{id}, POST, PUT/{id}, DELETE/{id} |
-| Proveedores | `/api/v1/proveedores` | GET, GET/{id}, POST, PUT/{id}, DELETE/{id} |
-| Clientes | `/api/v1/clientes` | GET, GET/{id}, POST, PUT/{id}, DELETE/{id} |
-| Usuarios | `/api/v1/usuarios` | GET, GET/{id}, POST, PUT/{id}, DELETE/{id} |
-| Stock | `/api/v1/stock` | GET (todos), GET/sucursal/{id}, POST /ajuste |
-| Sucursales | `/api/v1/sucursales` | GET (solo lectura) |
-| Roles | `/api/v1/roles` | GET (solo lectura) |
-| Tipo de cambio | `/api/v1/tipo-cambio` | GET /hoy, GET/{fecha}, POST /manual |
-| Health | `GET /api/v1/health` | Estado del servicio |
+| Módulo | Base URL | Operaciones principales |
+|--------|----------|--------------------------|
+| Auth | `/api/v1/auth` | POST /login |
+| Artículos | `/api/v1/articulos` | CRUD + GET /selector + GET /mejor-precio |
+| Categorías | `/api/v1/categorias-articulo` | CRUD |
+| Marcas | `/api/v1/marcas` | CRUD |
+| Listas de Precio | `/api/v1/listas-precio` | CRUD + GET /{id}/precios |
+| Proveedores | `/api/v1/proveedores` | CRUD |
+| Clientes | `/api/v1/clientes` | CRUD + GET /selector + GET /page |
+| Vendedores | `/api/v1/vendedores` | CRUD |
+| Usuarios | `/api/v1/usuarios` | CRUD |
+| Stock | `/api/v1/stock` | GET + GET /sucursal/{id} + POST /ajuste |
+| Sucursales | `/api/v1/sucursales` | GET (lectura) |
+| Roles | `/api/v1/roles` | GET (lectura) |
+| Tipo de cambio | `/api/v1/tipo-cambio` | GET /hoy + GET /{fecha} + POST /manual |
+| Cotizaciones | `/api/v1/cotizaciones` | CRUD + POST /{id}/estado + GET /para-pedido |
+| Pedidos | `/api/v1/pedidos` | CRUD + POST /{id}/confirmar + GET /para-facturar |
+| Facturas | `/api/v1/facturas` | POST + POST /{id}/emitir + POST /{id}/anular + GET /cliente/{id}/pendientes |
+| Recibos Cobro | `/api/v1/recibos-cobro` | POST + POST /{id}/aplicar + POST /{id}/anular |
+| Health | `/api/v1/health` | GET |
 
 ### Documentación interactiva (Swagger)
 

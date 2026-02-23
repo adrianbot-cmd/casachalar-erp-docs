@@ -1,6 +1,6 @@
 # Módulo: Recibos de Cobro
 
-Los recibos de cobro registran los pagos recibidos de clientes y los aplican contra las facturas pendientes. Soportan cobros de **múltiples facturas en un solo recibo**.
+Los recibos de cobro registran los pagos recibidos de clientes y los aplican contra las facturas pendientes. Soportan cobros de **múltiples facturas en un solo recibo** y **cobros parciales**.
 
 ## Acceso
 
@@ -19,30 +19,52 @@ BORRADOR → APLICADO
 | **APLICADO** | Cobro registrado. Las facturas reducen su saldo pendiente. |
 | **ANULADO** | Recibo anulado. Las facturas recuperan el saldo. |
 
+!!! info "Recibos automáticos"
+    Las **Boletas Contado** generan automáticamente un recibo en estado APLICADO al ser creadas. No es necesario crearlo manualmente.
+
+---
+
 ## Crear un recibo de cobro
 
-1. Hacé clic en **Nuevo Recibo**
-2. **Paso 1:** Seleccioná el cliente
-3. **Paso 2:** El sistema muestra todas las facturas del cliente con saldo pendiente.  
-   Marcá las facturas que se van a cobrar (podés seleccionar varias)
-4. **Paso 3:** Para cada factura seleccionada, podés ajustar el monto a aplicar  
-   (útil para cobros parciales)
-5. Seleccioná el **medio de pago** y completá observaciones opcionales
-6. El total se calcula automáticamente sumando los montos seleccionados
-7. Hacé clic en **Registrar Cobro**
+### Paso 1: Seleccionar cliente
 
-## Medios de pago disponibles
+Buscá y seleccioná el cliente. Aparecen todas sus facturas con saldo pendiente.
 
-| Medio | Descripción |
-|-------|-------------|
-| **Efectivo** | Pago en billetes/monedas |
-| **Transferencia** | Transferencia bancaria |
-| **Cheque** | Cheque de pago |
-| **Tarjeta** | Tarjeta de débito o crédito |
+### Paso 2: Seleccionar facturas a cobrar
 
-## Cobros parciales
+- Hacé clic en una fila para seleccionar (o deseleccionar) una factura
+- Podés seleccionar varias facturas del mismo cliente en un solo recibo
+- La columna **"A cobrar $"** muestra el monto a aplicar (igual al saldo por defecto)
+- Para **cobros parciales**: modificá el campo "A cobrar" al monto efectivo que pagó el cliente
 
-Podés cobrar un monto menor al saldo total de una factura. El campo **"A cobrar"** en la tabla de facturas permite ajustar el monto para cada una. El saldo restante queda disponible para futuros recibos.
+!!! note "Moneda"
+    Todos los montos se muestran en **pesos uruguayos (UYU)**, que es como el sistema almacena los valores internamente.
+
+### Paso 3: Detalle del cobro
+
+- **Medio de pago**: Efectivo / Transferencia / Cheque / Tarjeta
+- **Fecha de vencimiento del cheque**: aparece solo al seleccionar Cheque — ingresá la fecha del cheque *(obligatorio)*
+- **Observaciones**: nota opcional (ej. número de transferencia, banco)
+
+El total se calcula automáticamente sumando los montos de todas las facturas seleccionadas.
+
+Hacé clic en **Registrar Cobro** para guardar en BORRADOR.
+
+---
+
+## Medios de pago
+
+| Medio | Campo adicional |
+|-------|----------------|
+| **Efectivo** | — |
+| **Transferencia** | Observaciones (número de transferencia) |
+| **Cheque** | **Fecha de vencimiento del cheque** *(obligatorio)* |
+| **Tarjeta** | — |
+
+!!! warning "Cheques"
+    Al cobrar con cheque, siempre ingresá la **fecha de vencimiento**. El sistema la guarda en el recibo y es fundamental para el seguimiento de cheques en cartera.
+
+---
 
 ## Aplicar un recibo
 
@@ -51,10 +73,28 @@ Un recibo en BORRADOR no descuenta el saldo de las facturas. Para registrarlo:
 1. En la tabla de recibos, buscá el recibo en estado BORRADOR
 2. Hacé clic en **Aplicar**
 3. El saldo de cada factura se actualiza automáticamente
+4. Las facturas totalmente cobradas pasan a "✓ cobrada" (saldo = $0)
+
+---
 
 ## Anular un recibo
 
-Solo recibos en estado APLICADO pueden anularse. Al anular, las facturas recuperan el saldo correspondiente.
+Solo recibos APLICADO pueden anularse. Al anular:
+
+- Las facturas recuperan el saldo correspondiente
+- El recibo queda en estado ANULADO (histórico, no se elimina)
+
+---
+
+## Ver detalle
+
+Hacé clic en **Ver** para abrir el detalle lateral con:
+- Datos del cliente y fecha
+- Listado de facturas cobradas con monto aplicado
+- Medio de pago (y fecha de vencimiento del cheque, si aplica)
+- Total cobrado
+
+---
 
 ## API
 

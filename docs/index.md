@@ -7,11 +7,10 @@ Bienvenido al sistema ERP de **Casa Chalar** — repuestos e insumos para climat
 El ERP de Casa Chalar es la plataforma central para gestionar las operaciones del negocio:
 
 - 📦 **Stock e inventario** de repuestos y productos
-- 🛒 **Ventas** — cotizaciones, pedidos y facturación
-- 💰 **Cobros** — recibos de cobro multi-factura
+- 🛒 **Ventas** — cotizaciones, pedidos, facturas y recibos de cobro
+- 🚚 **Compras** e importaciones *(próximamente)*
 - 👥 **Clientes y proveedores**
-- 💱 **Tipo de cambio** BCU (USD/UYU automático)
-- 📊 **Reportes** y análisis
+- 📊 **Reportes** y análisis *(próximamente)*
 
 ## Acceso al sistema
 
@@ -24,49 +23,38 @@ El ERP de Casa Chalar es la plataforma central para gestionar las operaciones de
 
 ### ✅ Módulos implementados
 
-| Módulo | Backend | Frontend | Estado |
-|--------|---------|----------|--------|
-| Autenticación JWT | ✅ | ✅ Login | ✅ Completo |
-| Empresas | ✅ | — | ✅ Completo |
-| Sucursales | ✅ | — | ✅ Completo |
-| Tipo de cambio (BCU) | ✅ auto + manual | ✅ | ✅ Completo |
-| Artículos | ✅ CRUD | ✅ CRUD | ✅ Completo |
-| Categorías de artículo | ✅ CRUD | ✅ CRUD | ✅ Completo |
-| Marcas | ✅ CRUD | ✅ CRUD | ✅ Completo |
-| Listas de precio | ✅ CRUD | ✅ CRUD + drawer precios | ✅ Completo |
-| Proveedores | ✅ CRUD | ✅ CRUD | ✅ Completo |
-| Clientes | ✅ CRUD + descuentos | ✅ CRUD inline | ✅ Completo |
-| Usuarios | ✅ CRUD | ✅ CRUD | ✅ Completo |
-| Stock por sucursal | ✅ + movimientos | ✅ Vista | ✅ Completo |
-| Vendedores | ✅ (migrados del legacy) | — | ✅ Completo |
-| **Cotizaciones** | ✅ CRUD + estados | ✅ Formulario inline | ✅ Completo |
-| **Pedidos de Venta** | ✅ CRUD + estados | ✅ Desde cotización | ✅ Completo |
-| **Facturas** | ✅ CRUD + tipos | ✅ Desde pedido | ✅ Completo |
-| **Recibos de Cobro** | ✅ Multi-factura | ✅ Flujo guiado | ✅ Completo |
+| Módulo | Estado |
+|--------|--------|
+| Login y autenticación | ✅ Completo |
+| Artículos (catálogo) | ✅ Completo |
+| Categorías y Marcas | ✅ Completo |
+| Listas de Precio | ✅ Completo |
+| Clientes | ✅ Completo |
+| Proveedores | ✅ Completo |
+| Stock por sucursal | ✅ Completo |
+| Usuarios y roles | ✅ Completo |
+| Tipo de cambio (BCU) | ✅ Completo |
+| **Ventas — Cotizaciones** | ✅ Completo |
+| **Ventas — Pedidos** | ✅ Completo |
+| **Ventas — Facturas** | ✅ Completo |
+| **Ventas — Recibos de Cobro** | ✅ Completo |
 
 ### ⏳ Próximos módulos
 
 | Módulo | Estado |
 |--------|--------|
-| Compras locales (órdenes a proveedores) | Pendiente |
-| Importaciones (Carpeta de Importación, costos NCM/CBM) | Pendiente |
-| Tesorería (caja, cuentas corrientes) | Pendiente |
-| Depósitos (PROPIO, ZF, CONSIGNACIÓN) | Pendiente definición |
-| Intercompany (transferencias entre empresas) | Pendiente |
+| Compras (órdenes locales) | Pendiente definición con Carlos |
+| Importaciones (carpeta de importación) | Pendiente definición con Carlos |
+| Tesorería (caja, cheques) | Pendiente definición con Carlos |
+| Reportes y estadísticas | Pendiente |
 
-## Flujo de ventas
+## Guías de uso
 
-```
-Cliente  →  Cotización  →  Pedido  →  Factura  →  Recibo de Cobro
-                ↕              ↕
-          (BORRADOR→       (BORRADOR→
-           ENVIADA→         CONFIRMADO→
-           ACEPTADA→        EN_PROCESO→
-           CONVERTIDA)      FACTURADO)
-```
+- [Primeros pasos](manuales/primeros-pasos.md) — cómo acceder y navegar el sistema
+- [Manual de Ventas](manuales/ventas.md) — flujo completo de cotización a cobro
 
 ## Contacto y soporte
 
 - **Tecnología:** Julio Giraudi — julio.giraudi@casachalar.com
-- **Sistema:** Adri (agente IA) — adrian.bot@casachalar.com
+- **Sistema (IA):** Adri — adrian.bot@casachalar.com
 - **Funcional:** Carlos Bendayan

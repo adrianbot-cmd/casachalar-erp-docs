@@ -1,187 +1,206 @@
-# Manual de Usuario: Módulo Ventas
+# Manual de Ventas
 
-Esta guía explica cómo usar el módulo de Ventas del ERP Casa Chalar de principio a fin.
+Guía completa para operar el módulo de ventas del ERP Casa Chalar.
 
-## El flujo completo
+## El flujo de ventas
 
 ```
-1. Cotización → 2. Pedido → 3. Factura → 4. Recibo de Cobro
+(Cotización) → Pedido → Factura → Recibo de Cobro
 ```
 
-Cada paso es opcional según la operatoria:
-- Una venta al contado directa: **Pedido → Factura → Recibo**
-- Una venta con propuesta previa: **Cotización → Pedido → Factura → Recibo**
+Cada etapa es opcional según la operatoria del día:
+
+| Escenario | Pasos |
+|-----------|-------|
+| Venta al contado sin presupuesto | Pedido → Boleta Contado *(cobro automático)* |
+| Venta con presupuesto previo | Cotización → Pedido → Factura → Recibo |
+| Cuenta corriente | Pedido → Factura Crédito → Recibo (cuando paga) |
 
 ---
 
-## Paso 1: Cotización
+## 1. Cotización (presupuesto)
 
-### ¿Cuándo usar una cotización?
+Ir a **Ventas → Cotizaciones → Nueva Cotización**
 
-Cuando el cliente pide un presupuesto antes de confirmar la compra. La cotización no compromete stock ni genera saldo.
+### Cómo crear una cotización
 
-### Crear una cotización
-
-1. Ir a **Ventas → Cotizaciones**
-2. Hacer clic en **Nueva Cotización**
-3. Elegir la **moneda** (UYU o USD) — el tipo de cambio del BCU se carga automáticamente
-4. Seleccionar el **cliente** (los descuentos del cliente se aplican solos)
-5. Seleccionar el **vendedor** responsable (opcional)
-6. Indicar la **fecha de vencimiento** de la oferta (opcional)
-7. Cargar los **ítems**:
-   - Buscar el artículo por nombre o código
-   - El precio y el IVA se completan solos
+1. **Moneda**: elegí UYU o USD. El tipo de cambio del BCU se carga solo
+2. **Cliente**: al seleccionarlo, sus descuentos se aplican automáticamente a los ítems
+3. **Vendedor**: quién atiende la venta (opcional)
+4. **Fecha de vencimiento**: cuántos días es válida la oferta (opcional)
+5. **Ítems**: buscá por código o descripción
+   - El precio y el IVA se completan solos desde el catálogo
    - El descuento se pre-completa con el % del cliente
-   - Ajustar cantidad, precio o descuento si es necesario
-8. Agregar más ítems con **+ Agregar ítem**
-9. Guardar → queda en estado **BORRADOR**
+   - Todo es editable
 
-!!! tip "Tip: Ítems libres"
-    Podés agregar ítems sin seleccionar un artículo del catálogo. Escribí directamente en el campo "Descripción / Concepto". Útil para servicios o conceptos especiales.
+**Guardar** → queda en **BORRADOR**
 
-### Enviar la cotización al cliente
+### Estados de la cotización
 
-1. En la tabla de cotizaciones, buscar la cotización en estado BORRADOR
-2. Hacer clic en **Enviar**
-3. Estado pasa a **ENVIADA**
+| Estado | Qué significa | Qué podés hacer |
+|--------|--------------|-----------------|
+| **BORRADOR** | Todavía en preparación | Editar, Enviar |
+| **ENVIADA** | Ya fue enviada al cliente | Aceptar, Rechazar |
+| **ACEPTADA** | Cliente confirmó la oferta | Convertir en pedido |
+| **RECHAZADA** | Cliente la rechazó | — |
+| **CONVERTIDA** | Ya se hizo el pedido | Ver detalle |
 
-### ¿El cliente la aceptó?
+### Convertir cotización en pedido
 
-- Hacer clic en **✓ Aceptar** → estado pasa a ACEPTADA
-- Cuando se crea un pedido desde esta cotización → pasa a CONVERTIDA
-
-### ¿El cliente la rechazó?
-
-- Hacer clic en **✗** → estado pasa a RECHAZADA
+1. En **Pedidos**, crear un nuevo pedido
+2. Seleccionar el cliente — aparecen sus cotizaciones ENVIADA/ACEPTADA
+3. Hacer clic en **"Usar esta cotización"**
+4. Los ítems (con precios, descuentos y vendedor) se precargan solos
+5. La cotización pasa automáticamente a **CONVERTIDA**
 
 ---
 
-## Paso 2: Pedido de Venta
+## 2. Pedido de Venta
 
-### Crear un pedido desde una cotización
+Ir a **Ventas → Pedidos → Nuevo Pedido**
 
-1. Ir a **Ventas → Pedidos**
-2. Hacer clic en **Nuevo Pedido**
-3. Seleccionar el **cliente**
-4. Si el cliente tiene cotizaciones disponibles (ENVIADA o ACEPTADA), aparecen en una tabla
-5. Hacer clic en **"Usar esta cotización"** → los ítems se precargan automáticamente
-6. Ajustar si es necesario
-7. Completar: vendedor, fecha de entrega, número de OC del cliente (opcional)
-8. Guardar → queda en **BORRADOR**
+### Crear un pedido
 
-### Crear un pedido sin cotización previa
+**Opción A — Desde cotización existente:**
+1. Seleccioná el cliente
+2. Aparecen sus cotizaciones disponibles
+3. Hacé clic en **"Usar esta cotización"**
+4. Ajustá si es necesario y guardá
 
-1. Ir a **Ventas → Pedidos**
-2. Hacer clic en **Nuevo Pedido**
-3. Seleccionar cliente, moneda y cargar ítems manualmente
-4. Guardar
+**Opción B — Pedido libre:**
+1. Seleccioná cliente y moneda
+2. Cargá los ítems manualmente
+3. Guardá
 
 ### Confirmar el pedido
 
+Para poder facturar, el pedido debe estar **CONFIRMADO**:
+
 1. En la tabla, hacer clic en **Confirmar**
-2. Estado pasa a **CONFIRMADO** — ya está listo para facturar
+2. Estado pasa a CONFIRMADO → listo para facturar
 
 ---
 
-## Paso 3: Factura
+## 3. Factura
 
-### Crear una factura desde un pedido
+Ir a **Ventas → Facturas → Nueva Factura**
 
-!!! warning "Importante"
-    Las facturas **siempre** se crean a partir de un pedido. No existe factura directa sin pedido.
+### Crear una factura
 
-1. Ir a **Ventas → Facturas**
-2. Hacer clic en **Nueva Factura**
-3. Seleccionar el **cliente**
-4. Aparecen los pedidos CONFIRMADOS y EN_PROCESO del cliente
-5. Hacer clic en **"Facturar este"** para seleccionar el pedido
-6. Los ítems se precargan del pedido
-7. Completar:
-   - **Tipo de comprobante:** Factura Crédito / Boleta Contado / Contrarembolso / Nota Crédito / Nota Débito
-   - **Serie:** letra de la serie (ej: A)
-   - **Vendedor** (opcional)
-   - **Observaciones** (opcional)
-8. Hacer clic en **Crear Factura** → queda en **BORRADOR**
+1. Seleccioná el cliente
+2. Aparecen sus pedidos CONFIRMADOS
+3. Hacé clic en **"Facturar este"**
+4. Elegí el **tipo de comprobante**:
 
-### Emitir la factura
+### Tipos de comprobante y sus diferencias
 
-Para que la factura genere saldo y pueda cobrarse:
+| Tipo | Vencimiento | Cobro |
+|------|-------------|-------|
+| **Factura Crédito** | 30 días (automático) | Manual — crear Recibo de Cobro cuando paga |
+| **Boleta Contado** | Mismo día | **Automático** — se cobra al crear la factura |
+| **Contrarembolso** | Mismo día | Manual |
+| **Nota de Crédito** | Mismo día | — |
+| **Nota de Débito** | Mismo día | — |
 
-1. En la tabla, buscar la factura en BORRADOR
-2. Hacer clic en **Emitir**
-3. Estado pasa a **EMITIDA** con su saldo pendiente
+### Boleta Contado — el cobro es automático
+
+Al elegir Boleta Contado, aparece el campo **"Forma de cobro"** (obligatorio):
+
+- **Efectivo** — sin campos adicionales
+- **Transferencia** — sin campos adicionales  
+- **Cheque** — aparece campo **"Venc. cheque"** *(obligatorio)*. Ingresá la fecha del cheque
+- **Tarjeta** — sin campos adicionales
+
+Al guardar la Boleta Contado, el sistema automáticamente:
+- Emite la factura
+- Crea el recibo de cobro (APLICADO)
+- Deja el saldo en $0
+
+**No necesitás ir a Recibos de Cobro.**
+
+### Factura Crédito — vencimiento a 30 días
+
+El formulario muestra la fecha de vencimiento calculada (hoy + 30 días) en azul. Es solo visual, no se puede cambiar. Las facturas vencidas se marcan en rojo en la tabla.
+
+Para cobrar una Factura Crédito cuando el cliente paga, ir a **Ventas → Recibos Cobro**.
 
 ---
 
-## Paso 4: Recibo de Cobro
+## 4. Recibo de Cobro
 
-### Registrar un cobro
+Ir a **Ventas → Recibos Cobro → Nuevo Recibo**
 
-1. Ir a **Ventas → Recibos Cobro**
-2. Hacer clic en **Nuevo Recibo**
-3. Seleccionar el **cliente**
-4. Aparecen todas las facturas con saldo pendiente del cliente
-5. Marcar las facturas que se van a cobrar (check o clic en la fila)
-6. Para cobros parciales: ajustar el monto en el campo **"A cobrar"** de cada factura
-7. Seleccionar el **medio de pago** (Efectivo / Transferencia / Cheque / Tarjeta)
-8. Agregar observaciones si es necesario
-9. Hacer clic en **Registrar Cobro** → queda en **BORRADOR**
+### Para qué sirve
+
+Registra el pago de **Facturas Crédito** y otros comprobantes que no tienen cobro automático.
+
+### Crear un recibo
+
+1. Seleccioná el cliente
+2. Aparecen sus facturas con saldo pendiente
+3. Marcá las facturas que vas a cobrar (podés marcar varias)
+4. Para **cobros parciales**: editá el campo "A cobrar" con el monto efectivo
+5. Elegí el **medio de pago**:
+   - Si elegís **Cheque**: ingresá la fecha de vencimiento del cheque *(obligatorio)*
+6. Agregá observaciones si querés (número de transferencia, banco, etc.)
+7. Clic en **Registrar Cobro**
 
 ### Aplicar el recibo
 
-1. En la tabla, hacer clic en **Aplicar**
-2. El saldo de cada factura cobrada se reduce automáticamente
-3. Las facturas totalmente cobradas muestran "✓ Cobrada" en verde
+El recibo recién creado queda en **BORRADOR**. Para que descuente el saldo de las facturas:
+
+1. En la tabla, clic en **Aplicar**
+2. Los saldos se actualizan automáticamente
 
 ---
 
-## Monedas y tipo de cambio
+## Monedas (UYU / USD)
 
-### UYU vs USD
+### Cómo funciona
 
-- Podés crear comprobantes en **UYU** (pesos uruguayos) o **USD** (dólares)
-- El tipo de cambio del BCU se consulta automáticamente cada día hábil
-- Si el BCU no responde, se usa el último valor disponible o $50 por defecto
+Podés crear cualquier comprobante en **pesos (UYU)** o **dólares (USD)**.
 
-### Convertir moneda en el formulario
+- El tipo de cambio del BCU se consulta automáticamente
+- Si el BCU no responde, se usa el último valor disponible
+- Al elegir USD, los precios del catálogo se muestran en dólares
 
-Al cambiar de UYU a USD (o viceversa) **después de cargar ítems**, los precios se reconvierten automáticamente usando el TC del día. No perdés los precios cargados.
+### Cambiar la moneda después de cargar ítems
 
-### Almacenamiento
+Si cambias la moneda con ítems ya cargados, el sistema reconvierte los precios usando el TC del día. **No perdés los ítems.**
 
-El backend almacena todos los precios en UYU internamente. La moneda del comprobante controla cómo se muestran y calculan los totales.
+### Almacenamiento interno
+
+El backend siempre guarda los precios en UYU. La moneda del comprobante determina cómo se muestran los totales en pantalla y en los recibos.
 
 ---
 
-## Descuentos
+## Descuentos del cliente
 
-### Descuento del cliente (automático)
+Cada cliente puede tener configurado hasta dos porcentajes de descuento en su ficha:
 
-Cada cliente puede tener descuentos configurados en su ficha:
-- **Descuento 1 %:** descuento de línea (sobre el precio de cada ítem)
-- **Descuento 2 %:** descuento financiero adicional
+- **Descuento 1 %**: descuento de línea, se aplica sobre el precio unitario
+- **Descuento 2 %**: descuento financiero adicional, se aplica sobre el subtotal ya descontado
 
-Al seleccionar un cliente en cualquier comprobante, estos descuentos se aplican automáticamente a todos los ítems.
-
-### Ajuste manual
-
-Podés modificar el descuento de cada ítem individualmente en el formulario, sin perder el descuento base del cliente.
+Al seleccionar el cliente en cualquier comprobante, estos descuentos se pre-completan en todos los ítems. Podés modificarlos ítem por ítem si es necesario.
 
 ---
 
 ## Preguntas frecuentes
 
-**¿Puedo crear una factura sin pedido?**  
-No. Toda factura debe originarse en un pedido confirmado. Esto garantiza trazabilidad completa (cotización → pedido → factura → cobro).
+**¿Puedo hacer una factura sin pedido?**  
+No. Toda factura requiere un pedido confirmado. Esto garantiza trazabilidad de cotización → pedido → factura → cobro.
 
-**¿Puedo cobrar varias facturas en un solo recibo?**  
-Sí. El recibo de cobro permite seleccionar múltiples facturas del mismo cliente.
+**¿Puedo cobrar varias facturas en un recibo?**  
+Sí. El recibo permite seleccionar múltiples facturas del mismo cliente.
 
-**¿Puedo cobrar una factura en dos partes?**  
-Sí. Al registrar el recibo, ajustá el campo "A cobrar" al monto parcial. El saldo restante queda disponible para el próximo recibo.
+**¿Puedo hacer un cobro parcial?**  
+Sí. Al crear el recibo, editá el campo "A cobrar" con el monto parcial. El resto queda como saldo pendiente.
 
-**¿El sistema avisa si la sesión expiró?**  
-Sí. Cuando el token de sesión vence, el sistema redirige automáticamente a la pantalla de login.
+**¿Qué pasa si una Boleta Contado ya tiene el cobro automático y quiero anularla?**  
+Primero anulá el Recibo de Cobro asociado (esto restaura el saldo de la factura), luego anulá la factura.
 
-**¿Los precios en USD se guardan en USD?**  
-No. El backend almacena todo en UYU usando el TC del día. La moneda del comprobante es para visualización. Al convertir un comprobante de USD a UYU en pantalla, se usa el TC guardado al momento de la creación.
+**¿Las facturas vencidas se notifican?**  
+Hoy se marcan en rojo en la tabla. En el futuro habrá alertas y reportes de facturas vencidas.
+
+**¿El sistema guarda el cheque por separado?**  
+La fecha de vencimiento del cheque queda registrada en el Recibo de Cobro, visible en el detalle. Un futuro módulo de Tesorería permitirá hacer seguimiento de cheques en cartera.
