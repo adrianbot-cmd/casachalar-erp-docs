@@ -33,11 +33,25 @@ nav:
     - Listas de Precio: modulos/listas-precio.md
     - Usuarios: modulos/usuarios.md
     - Tipo de Cambio: modulos/tipo-cambio.md
+    - Catálogos:
+      - Rubros / Familias / Categorías: modulos/categorias.md
+    - Almacenes:
+      - Depósitos: modulos/depositos.md
     - Ventas:
       - Cotizaciones: modulos/cotizaciones.md
       - Pedidos: modulos/pedidos.md
       - Facturas: modulos/facturas.md
       - Recibos de Cobro: modulos/recibos-cobro.md
+    - Tesorería:
+      - Bancos: modulos/bancos.md
+      - Cheques: modulos/cheques.md
+      - Cashflow: modulos/cashflow.md
+    - Compras:
+      - Requerimientos: modulos/compras/requerimientos.md
+      - Cotizaciones de Compra: modulos/compras/cotizaciones-compra.md
+      - Órdenes de Compra: modulos/compras/ordenes-compra.md
+      - Recepciones: modulos/compras/recepciones.md
+      - Cuentas por Pagar: modulos/compras/facturas-proveedor.md
   - Documentación Técnica:
     - Arquitectura: arquitectura/overview.md
     - Guía de Deploy: deploy/guia-deploy.md
@@ -47,6 +61,7 @@ nav:
       - ADR-003 Maestros del Sistema: decisiones/ADR-003-maestros-del-sistema.md
       - ADR-004 Capa 3 - Usuarios y Stock: decisiones/ADR-004-capa3-usuarios-stock.md
       - ADR-005 Módulo Ventas: decisiones/ADR-005-ventas-comprobantes.md
+      - ADR-006 Módulo Compras: decisiones/ADR-006-compras.md
 
 plugins:
   - search:
