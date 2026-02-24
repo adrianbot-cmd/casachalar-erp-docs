@@ -21,18 +21,31 @@ El sistema tiene un **menú lateral izquierdo** con acceso a todos los módulos:
 ```
 Dashboard
 ├── Artículos
-├── Categorías
-├── Marcas
+├── Catálogos
+│   ├── Rubros / Familias / Categorías
+│   └── Marcas
 ├── Listas de Precio
 ├── Clientes
 ├── Proveedores
 ├── Stock
+├── Almacenes
+│   └── Depósitos
 ├── Usuarios
-└── Ventas
-    ├── Cotizaciones
-    ├── Pedidos
-    ├── Facturas
-    └── Recibos Cobro
+├── Ventas
+│   ├── Cotizaciones
+│   ├── Pedidos
+│   ├── Facturas
+│   └── Recibos Cobro
+├── Compras
+│   ├── Requerimientos
+│   ├── Cotizaciones de Compra
+│   ├── Órdenes de Compra
+│   ├── Recepciones
+│   └── Cuentas por Pagar
+└── Tesorería
+    ├── Bancos
+    ├── Cheques
+    └── Cashflow
 ```
 
 ---
@@ -44,6 +57,10 @@ El catálogo de productos y repuestos de la empresa.
 - Ver, crear y modificar artículos
 - Asignar categoría, marca y proveedor habitual
 - Ver [manual de Artículos](../modulos/articulos.md)
+
+### 🗂️ Catálogos
+Clasificación jerárquica del catálogo: Rubro → Familia → Categoría.
+- Ver [Rubros, Familias y Categorías](../modulos/categorias.md)
 
 ### 👥 Clientes
 Directorio de clientes con condición de pago y lista de precios.
@@ -61,6 +78,10 @@ Inventario en tiempo real por sucursal.
 - Registrar entradas, salidas y ajustes
 - Ver [manual de Stock](../modulos/stock.md)
 
+### 🏭 Almacenes
+Gestión de depósitos propios, zonas francas y consignación.
+- Ver [manual de Depósitos](../modulos/depositos.md)
+
 ### 🛒 Ventas
 El módulo completo de ventas. Ver el [Manual de Ventas](ventas.md) para la guía detallada.
 
@@ -70,6 +91,26 @@ El módulo completo de ventas. Ver el [Manual de Ventas](ventas.md) para la guí
 | **Pedidos** | Confirmación de la venta (paso 2) |
 | **Facturas** | Documento fiscal de la venta (paso 3) |
 | **Recibos Cobro** | Registro del pago del cliente (paso 4) |
+
+### 🛍️ Compras
+Ciclo completo de compras. Ver el [Manual de Compras](compras.md) para la guía detallada.
+
+| Sub-módulo | Para qué sirve |
+|-----------|---------------|
+| **Requerimientos** | Solicitud interna de compra (con aprobación opcional) |
+| **Cotizaciones de Compra** | Pedido de precio a proveedores y comparación |
+| **Órdenes de Compra** | Documento formal de compra al proveedor |
+| **Recepciones** | Registro de la mercadería que llega |
+| **Cuentas por Pagar** | Facturas de proveedor y saldos pendientes |
+
+### 💰 Tesorería
+Gestión de cheques y proyección de caja. Ver el [Manual de Tesorería](tesoreria.md) para la guía detallada.
+
+| Sub-módulo | Para qué sirve |
+|-----------|---------------|
+| **Bancos** | Maestro de instituciones bancarias |
+| **Cheques** | Seguimiento de cheques propios y de terceros |
+| **Cashflow** | Proyección de ingresos y egresos por fecha |
 
 ### 👤 Usuarios *(solo ADMIN)*
 Gestión de usuarios del sistema y sus roles.

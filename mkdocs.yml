@@ -25,6 +25,8 @@ nav:
   - Manuales de Usuario:
     - Primeros pasos: manuales/primeros-pasos.md
     - Módulo Ventas: manuales/ventas.md
+    - Módulo Compras: manuales/compras.md
+    - Módulo Tesorería: manuales/tesoreria.md
   - Módulos:
     - Artículos: modulos/articulos.md
     - Clientes: modulos/clientes.md
