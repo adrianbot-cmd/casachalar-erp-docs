@@ -17,7 +17,7 @@ El ERP de Casa Chalar es la plataforma central para gestionar las operaciones de
 | Ambiente | URL | Uso |
 |----------|-----|-----|
 | Producción | https://one-erp.casachalar.com | Operación diaria |
-| Desarrollo | http://34.151.246.79 | Pruebas y validación |
+| Desarrollo | http://34.176.45.29 | Pruebas y validación |
 
 ## Estado de desarrollo
 
@@ -27,25 +27,34 @@ El ERP de Casa Chalar es la plataforma central para gestionar las operaciones de
 |--------|--------|
 | Login y autenticación | ✅ Completo |
 | Artículos (catálogo) | ✅ Completo |
-| Categorías y Marcas | ✅ Completo |
+| Categorías, Rubros, Familias | ✅ Completo |
+| Marcas | ✅ Completo |
 | Listas de Precio | ✅ Completo |
 | Clientes | ✅ Completo |
 | Proveedores | ✅ Completo |
 | Stock por sucursal | ✅ Completo |
 | Usuarios y roles | ✅ Completo |
 | Tipo de cambio (BCU) | ✅ Completo |
+| Direcciones de Entrega | ✅ Completo |
 | **Ventas — Cotizaciones** | ✅ Completo |
 | **Ventas — Pedidos** | ✅ Completo |
 | **Ventas — Facturas** | ✅ Completo |
 | **Ventas — Recibos de Cobro** | ✅ Completo |
+| **Depósitos** (PROPIO / ZF / CONSIGNACION) | ✅ Completo |
+| **Tesorería — Cheques** | ✅ Completo |
+| **Tesorería — Cashflow** | ✅ Completo |
+| **Compras — Órdenes de Compra** | ✅ Completo |
+| **Compras — Recepciones** | ✅ Completo |
+| **Compras — Facturas Proveedor (CxP)** | ✅ Completo |
+| **Compras — Requerimientos** | ✅ Completo |
+| **Compras — Cotizaciones a Proveedores** | ✅ Completo |
 
 ### ⏳ Próximos módulos
 
 | Módulo | Estado |
 |--------|--------|
-| Compras (órdenes locales) | Pendiente definición con Carlos |
-| Importaciones (carpeta de importación) | Pendiente definición con Carlos |
-| Tesorería (caja, cheques) | Pendiente definición con Carlos |
+| Remitos (transferencia stock → depósito consignación) | En definición |
+| Importaciones (carpeta de importación) | Pendiente |
 | Reportes y estadísticas | Pendiente |
 
 ## Guías de uso

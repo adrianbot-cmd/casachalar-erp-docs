@@ -111,7 +111,7 @@ La parte más importante del proyecto depende de vos: **definir cómo debe funci
 Depende de cuántos módulos se desarrollen y con qué nivel de detalle. El enfoque es entregar funcionalidades completas de a una, empezando por las más críticas.
 
 **¿Puedo ver el sistema mientras se desarrolla?**
-Sí — el servidor de desarrollo (`http://34.151.246.79`) muestra el estado actual. A medida que Adri desarrolla funcionalidades, aparecen ahí para que las revisen antes de ir a producción.
+Sí — el servidor de desarrollo (`http://34.176.45.29`) muestra el estado actual. A medida que Adri desarrolla funcionalidades, aparecen ahí para que las revisen antes de ir a producción.
 
 **¿Qué pasa si algo no funciona como esperaba?**
 Se reporta en Slack, Adri lo corrige, y pasa por el proceso de aprobación antes de volver a producción. El sistema siempre tiene un "backup" del estado anterior.

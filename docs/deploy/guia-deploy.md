@@ -17,6 +17,9 @@ gcloud compute ssh github-actions@erp-prod \
   --tunnel-through-iap \
   --project=chalar-erp
 
+# SSH directo a dev (nueva zona desde 2026-02-25)
+ssh -i /home/lito/.ssh/google_compute_engine lito@34.176.45.29
+
 # En la VM
 cd /opt/erp
 docker-compose pull

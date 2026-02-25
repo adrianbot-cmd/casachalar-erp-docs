@@ -10,10 +10,10 @@
 | Build tool FE | Vite | 6 |
 | Base de datos | PostgreSQL | 16 (Cloud SQL) |
 | ORM | JPA / Hibernate | — |
-| Migraciones | Flyway | V1–V21 |
+| Migraciones | Flyway | V1–V34 |
 | Contenedores | Docker + Compose | — |
 | Registry | GCP Artifact Registry | — |
-| Hosting | GCP Compute Engine (e2-micro) | southamerica-east1-c |
+| Hosting | GCP Compute Engine (e2-micro) | southamerica-west1-a (dev) / southamerica-east1-c (prod) |
 | CI/CD | GitHub Actions | — |
 | Code review | CodeRabbit | — |
 
@@ -21,7 +21,7 @@
 
 | Ambiente | VM | IP pública | Rama |
 |----------|----|----|------|
-| Dev | erp-dev | 34.151.246.79 | develop |
+| Dev | erp-dev | 34.176.45.29 | develop |
 | Prod | erp-prod | 35.198.12.188 | main |
 | DB | casachalar-db (Cloud SQL) | 34.151.249.127 | — |
 
@@ -96,6 +96,16 @@ casachalar-erp/
 | V19 | Datos de vendedores iniciales |
 | V20 | Migración de vendedores desde sistema legacy |
 | V21 | Extensión de `clientes` con `descuento1_pct` y `descuento2_pct` |
+| V22 | `fecha_vencimiento` en facturas + autoEmitirYCobrar (boleta contado) |
+| V23 | Unidades de medida y condiciones de pago |
+| V24 | Módulo Depósitos (PROPIO / ZF / CONSIGNACION) |
+| V25–V26 | Jerarquía Rubro → Familia → Categoría |
+| V27 | Direcciones de entrega |
+| V28–V30 | Bancos + Cheques (COMUN/DIFERIDO, PROPIO/TERCEROS, estados) |
+| V31 | Módulo Compras — Órdenes de Compra + ítems |
+| V32 | Recepciones de Compra (stock ENTRADA, costo promedio) |
+| V33 | Facturas Proveedor — CxP con 3-way match |
+| V34 | Requerimientos + Cotizaciones de Compra (adjudicación automática) |
 
 ## API REST — Endpoints disponibles
 
@@ -121,11 +131,22 @@ Header opcional para SUPER_ADMIN: `X-Empresa-Id: {id}`
 | Pedidos | `/api/v1/pedidos` | CRUD + POST /{id}/confirmar + GET /para-facturar |
 | Facturas | `/api/v1/facturas` | POST + POST /{id}/emitir + POST /{id}/anular + GET /cliente/{id}/pendientes |
 | Recibos Cobro | `/api/v1/recibos-cobro` | POST + POST /{id}/aplicar + POST /{id}/anular |
+| Depósitos | `/api/v1/depositos` | CRUD |
+| Cheques | `/api/v1/cheques` | GET (filtros) + PUT /{id}/depositar + PUT /{id}/descontar + PUT /{id}/endosar + PUT /{id}/rechazar |
+| Bancos | `/api/v1/bancos` | CRUD |
+| Cashflow | `/api/{empresaId}/cashflow` | GET (cheques EN_CARTERA + CxC) |
+| Categorías (jerarquía) | `/api/v1/rubros` `/api/v1/familias` | CRUD |
+| Direcciones Entrega | `/api/v1/direcciones-entrega` | CRUD |
+| Órdenes de Compra | `/api/v1/ordenes-compra` | CRUD + POST /{id}/anular |
+| Recepciones Compra | `/api/v1/recepciones-compra` | POST + GET |
+| Facturas Proveedor | `/api/v1/facturas-proveedor` | POST + GET |
+| Requerimientos | `/api/v1/requerimientos` | CRUD + POST /{id}/estado |
+| Cotizaciones Compra | `/api/v1/cotizaciones-compra` | CRUD + POST /{id}/adjudicar |
 | Health | `/api/v1/health` | GET |
 
 ### Documentación interactiva (Swagger)
 
-- Dev: `http://34.151.246.79/swagger-ui.html`
+- Dev: `http://34.176.45.29/swagger-ui.html`
 - Prod: `http://35.198.12.188/swagger-ui.html`
 
 ## Seguridad
