@@ -5,7 +5,6 @@
 1. Abrí el navegador (Chrome o Firefox recomendado)
 2. Ingresá a la URL del sistema:
    - **Producción:** https://one-erp.casachalar.com
-   - **Desarrollo:** http://34.151.246.79
 3. Ingresá tu **usuario** y **contraseña**
 4. Hacé clic en **Ingresar**
 
@@ -27,9 +26,16 @@ Dashboard
 ├── Listas de Precio
 ├── Clientes
 ├── Proveedores
+├── Vendedores
 ├── Stock
+│   ├── Vista general (consolidada)
+│   ├── Por Depósito
+│   └── Inventario Físico
 ├── Almacenes
-│   └── Depósitos
+│   ├── Depósitos
+│   ├── Sucursales
+│   └── Remitos
+├── Cajas
 ├── Usuarios
 ├── Ventas
 │   ├── Cotizaciones
@@ -42,10 +48,13 @@ Dashboard
 │   ├── Órdenes de Compra
 │   ├── Recepciones
 │   └── Cuentas por Pagar
-└── Tesorería
-    ├── Bancos
-    ├── Cheques
-    └── Cashflow
+├── Tesorería
+│   ├── Bancos
+│   ├── Cheques
+│   └── Cashflow
+└── Configuración
+    ├── Condiciones de Pago
+    └── Unidades de Medida
 ```
 
 ---
@@ -55,15 +64,20 @@ Dashboard
 ### 📦 Artículos
 El catálogo de productos y repuestos de la empresa.
 - Ver, crear y modificar artículos
-- Asignar categoría, marca y proveedor habitual
+- Asignar categoría, marca, proveedor habitual e IVA
+- Gestión bimonetaria (precios en UYU y USD)
 - Ver [manual de Artículos](../modulos/articulos.md)
 
 ### 🗂️ Catálogos
 Clasificación jerárquica del catálogo: Rubro → Familia → Categoría.
 - Ver [Rubros, Familias y Categorías](../modulos/categorias.md)
 
+### 💲 Listas de Precio
+Gestión de listas con márgenes y precios especiales por cliente.
+- Ver [manual de Listas de Precio](../modulos/listas-precio.md)
+
 ### 👥 Clientes
-Directorio de clientes con condición de pago y lista de precios.
+Directorio de clientes con condición de pago, lista de precios y descuentos automáticos.
 - Ver, crear y modificar clientes
 - Ver [manual de Clientes](../modulos/clientes.md)
 
@@ -72,15 +86,41 @@ Directorio de proveedores nacionales e importadores.
 - Ver, crear y modificar proveedores
 - Ver [manual de Proveedores](../modulos/proveedores.md)
 
+### 🧑‍💼 Vendedores
+Maestro de vendedores para seguimiento de comprobantes y comisiones.
+- Ver [manual de Vendedores](../modulos/vendedores.md)
+
 ### 📊 Stock
-Inventario en tiempo real por sucursal.
-- Consultar stock actual
-- Registrar entradas, salidas y ajustes
+Inventario en tiempo real por artículo y depósito.
+
+| Sub-módulo | Para qué sirve |
+|-----------|---------------|
+| **Vista general** | Stock consolidado por artículo (suma todos los depósitos) |
+| **Por Depósito** | Stock desglosado por depósito. Ajustes manuales. |
+| **Inventario Físico** | Proceso formal de conteo y ajuste por lote |
+
 - Ver [manual de Stock](../modulos/stock.md)
+- Ver [Stock por Depósito](../modulos/stock-deposito.md)
+- Ver [Inventario Físico](../modulos/inventario-fisico.md)
 
 ### 🏭 Almacenes
-Gestión de depósitos propios, zonas francas y consignación.
+Gestión de depósitos y transferencias de mercadería.
+
+| Sub-módulo | Para qué sirve |
+|-----------|---------------|
+| **Depósitos** | ABM de depósitos propios, zonas francas y consignación |
+| **Sucursales** | ABM de sucursales con depósito de stock asignado |
+| **Remitos** | Transferencias de stock entre depósitos |
+
 - Ver [manual de Depósitos](../modulos/depositos.md)
+- Ver [manual de Sucursales](../modulos/sucursales.md)
+- Ver [manual de Remitos](../modulos/remitos.md)
+
+### 💵 Cajas
+Control de movimientos de efectivo por sucursal.
+- Apertura y cierre de sesión de caja
+- Movimientos de ingreso, egreso, cobros y pagos
+- Ver [manual de Cajas](../modulos/cajas.md)
 
 ### 🛒 Ventas
 El módulo completo de ventas. Ver el [Manual de Ventas](ventas.md) para la guía detallada.
@@ -112,6 +152,17 @@ Gestión de cheques y proyección de caja. Ver el [Manual de Tesorería](tesorer
 | **Cheques** | Seguimiento de cheques propios y de terceros |
 | **Cashflow** | Proyección de ingresos y egresos por fecha |
 
+### ⚙️ Configuración *(solo ADMIN)*
+Tablas maestras del sistema.
+
+| Sub-módulo | Para qué sirve |
+|-----------|---------------|
+| **Condiciones de Pago** | CONTADO / 30 días / 60 días / etc. |
+| **Unidades de Medida** | UN, KG, MT, LT, etc. |
+
+- Ver [Condiciones de Pago](../modulos/condiciones-pago.md)
+- Ver [Unidades de Medida](../modulos/unidades-medida.md)
+
 ### 👤 Usuarios *(solo ADMIN)*
 Gestión de usuarios del sistema y sus roles.
 - Ver [manual de Usuarios](../modulos/usuarios.md)
@@ -120,9 +171,19 @@ Gestión de usuarios del sistema y sus roles.
 
 ## Tipo de cambio
 
-El sistema obtiene automáticamente el tipo de cambio USD/UYU del **Banco Central del Uruguay (BCU)** cada día hábil. Se usa en todos los comprobantes en dólares.
+El sistema obtiene automáticamente el tipo de cambio USD/UYU del **Banco Central del Uruguay (BCU)** cada día hábil. Se usa en todos los comprobantes en dólares y en la conversión de precios de artículos.
 
 Si el BCU no está disponible, se usa el último valor registrado.
+
+Ver [Tipo de Cambio](../modulos/tipo-cambio.md).
+
+---
+
+## Multiempresa
+
+Casa Chalar opera con **dos empresas** en el mismo sistema. Cada empresa tiene su propio catálogo de artículos, clientes, proveedores, stock y comprobantes.
+
+Al iniciar sesión, el sistema te posiciona en la empresa asignada a tu usuario. Los usuarios con rol SUPER_ADMIN pueden cambiar de empresa desde el menú de configuración.
 
 ---
 

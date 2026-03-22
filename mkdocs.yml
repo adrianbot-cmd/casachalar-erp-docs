@@ -31,6 +31,7 @@ nav:
     - Artículos: modulos/articulos.md
     - Clientes: modulos/clientes.md
     - Proveedores: modulos/proveedores.md
+    - Vendedores: modulos/vendedores.md
     - Stock: modulos/stock.md
     - Listas de Precio: modulos/listas-precio.md
     - Usuarios: modulos/usuarios.md
@@ -39,6 +40,12 @@ nav:
       - Rubros / Familias / Categorías: modulos/categorias.md
     - Almacenes:
       - Depósitos: modulos/depositos.md
+      - Sucursales: modulos/sucursales.md
+      - Remitos: modulos/remitos.md
+    - Inventario:
+      - Stock por Depósito: modulos/stock-deposito.md
+      - Inventario Físico: modulos/inventario-fisico.md
+    - Cajas: modulos/cajas.md
     - Ventas:
       - Cotizaciones: modulos/cotizaciones.md
       - Pedidos: modulos/pedidos.md
@@ -54,6 +61,9 @@ nav:
       - Órdenes de Compra: modulos/compras/ordenes-compra.md
       - Recepciones: modulos/compras/recepciones.md
       - Cuentas por Pagar: modulos/compras/facturas-proveedor.md
+    - Configuración:
+      - Condiciones de Pago: modulos/condiciones-pago.md
+      - Unidades de Medida: modulos/unidades-medida.md
   - Documentación Técnica:
     - Arquitectura: arquitectura/overview.md
     - Guía de Deploy: deploy/guia-deploy.md
